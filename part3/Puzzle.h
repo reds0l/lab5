@@ -95,15 +95,17 @@ template <class T> void Puzzle<T>::print()
     }
 }
 
-int addValue(int, int, T);
+template <class T> int Puzzle<T>::addValue(int, int, T);
 {
 
 }
-int validPlacement(int, int, T);
+
+template <class T> int Puzzle<T>::validPlacement(int, int, T);
 {
 
 }
-void complete();
+
+template <class T> void Puzzle<T>::complete();
 {
 
 }
