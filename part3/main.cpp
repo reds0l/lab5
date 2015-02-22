@@ -9,16 +9,10 @@ using namespace std;
 int main()
 {
 
-Puzzle<int> sudoku1;
-Puzzle<int> sudoku2("sudoku.txt");
-Puzzle<int> sudoku3(4);
-Puzzle<char> sudoku4;
+Puzzle<int> sudoku1("sudoku.txt");
 
 sudoku1.print();
 cout << endl << endl;
-sudoku2.print();
-cout << endl << endl;
-sudoku3.print();
-cout << endl << endl;
-sudoku4.print();
+sudoku1.addValue();
+sudoku1.print();
 }

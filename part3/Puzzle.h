@@ -19,9 +19,11 @@ class Puzzle {
         Puzzle(string);
         void empty();
         void print();
-        int addValue(int, int, T);
-        int validPlacement(int, int, T);
-        void complete();
+        void addValue();
+        int validPlacement(int, int, int);
+        int checkBox(int, int, int);
+        void isComplete();
+        void interactive();
 
     private:
 
@@ -95,17 +97,102 @@ template <class T> void Puzzle<T>::print()
     }
 }
 
-template <class T> int Puzzle<T>::addValue(int, int, T);
+template <class T> void Puzzle<T>::addValue()
+{
+    int x, y, value;
+    do
+    {
+        cout << "Enter the row you would like place your value:" << endl;
+        cin >> x;
+        cout << "Enter the column you would like place your value:" << endl;
+        cin >> y;
+        cout << "Enter the value you want to place:" << endl;
+        cin >> value;
+    }while (validPlacement(x,y,value)!=1);
+
+    board[x][y] = value;
+}
+
+template <class T> int Puzzle<T>::validPlacement(int x, int y, int value)
+{
+    if (x<0 || x>=size)
+    {
+        cout << "Invalid input for row" << endl << endl;
+        return 0;
+    }
+    else if (y<0 || y>=size)
+    {
+        cout << "Invalid input for column" << endl << endl;
+        return 0;
+    }
+    else if (value<0 || value>9)
+    {
+        if (value==0){return 0;}
+        cout << "Invalid input for value" << endl << endl;
+        return 0;
+    }
+
+    int i,j;
+    for (i=0;i<size;i++)
+    {
+        if (value==board[i][y])
+        {
+            cout << "column conflict" << endl << endl;
+            return 0;
+        }
+        if (value==board[x][i])
+        {
+            cout << "row conflict" << endl << endl;
+            return 0;
+        }
+    }
+
+    int boxX, boxY, boxCheck;
+    (x<3 ? boxX=0 : (x>5 ? boxX=2 : boxX=1));
+    (y<3 ? boxY=0 : (y>5 ? boxY=2 : boxY=1));
+    boxCheck=checkBox(boxX, boxY, value);
+    if (boxCheck==1)
+        return 1;
+    if (boxCheck==0)
+        return 0;
+}
+
+template <class T> int Puzzle<T>::checkBox(int boxX, int boxY, int value)
+{
+    int i,j ;
+    int X = boxX*3;
+    int Y = boxY*3;
+    for (i=0;i<3;i++)
+    {
+        for (j=0;j<3;j++)
+        {
+            if (board[i+X][j+Y]==value)
+            {
+                cout << "value exists in box" << endl << endl;
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+template <class T> void Puzzle<T>::isComplete()
 {
 
 }
 
-template <class T> int Puzzle<T>::validPlacement(int, int, T);
+template <class T> void Puzzle<T>::interactive()
 {
-
-}
-
-template <class T> void Puzzle<T>::complete();
-{
-
+    char c='0';
+    while (c!='q')
+    {
+        print();
+        cout << endl << "type 'a' to add value board, 'c' to check if your board is correct, or 'q' to quit" << endl;
+        if(c=='q')
+            continue;
+        else if (c=='c')
+            isComplete();
+        else if (c=='a')
+            addValue();
+    }
 }
