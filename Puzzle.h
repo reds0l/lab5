@@ -6,6 +6,7 @@
 #include<vector>
 #include<fstream>
 #include<string>
+#include<typeinfo>
 using namespace std;
 
 template <class T>
@@ -51,7 +52,7 @@ template <class T> Puzzle<T>::Puzzle(string filename)
     {
         for(i=0 ; i<size ; i++)
         {
-            filename >> tempvector;
+            infile >> temp;
             tempvector.push_back(temp);
         }
         board.push_back(tempvector);
@@ -66,7 +67,10 @@ template <class T> void Puzzle<T>::empty()
 
     for (i=0;i<size;i++)
     {
-        temp.push_back(0);
+        if (typeid(T) == typeid(char))
+            temp.push_back('o');
+        else
+            temp.push_back(0);
     }
     for (i=0;i<size;i++)
     {
@@ -76,9 +80,13 @@ template <class T> void Puzzle<T>::empty()
 
 template <class T> void Puzzle<T>::print()
 {
-    int i;
+    int i,j;
     for (i=0;i<size;i++)
     {
-        cout << board[i] << endl;
+        for (j=0;j<size;j++)
+        {
+            cout << board[i][j];
+        }
+        cout << endl;
     }
 }
