@@ -19,10 +19,14 @@ class Puzzle {
         Puzzle(string);
         void empty();
         void print();
+        int addValue(int, int, T);
+        int validPlacement(int, int, T);
+        void complete();
 
     private:
 
         int size;
+        T element;
         vector < vector<T> > board;
 
 };
@@ -89,4 +93,17 @@ template <class T> void Puzzle<T>::print()
         }
         cout << endl;
     }
+}
+
+int addValue(int, int, T);
+{
+
+}
+int validPlacement(int, int, T);
+{
+
+}
+void complete();
+{
+
 }
