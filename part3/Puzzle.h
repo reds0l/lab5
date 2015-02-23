@@ -209,7 +209,7 @@ template <class T> void Puzzle<T>::isComplete()
         {
             if (board[i][j] == 0 || board[i][j] =='0')
             {
-                cout << endl << "In complete puzzle" << endl << endl;
+                cout << endl << "Incomplete puzzle" << endl << endl;
                 return;
             }
         }
