@@ -59,11 +59,17 @@ template <class T> Puzzle<T>::Puzzle(string filename)
         for(i=0 ; i<size ; i++)
         {
             infile >> temp;
+            if (typeid(T) == typeid(char) && temp==' ')
+            {
+                i--;
+                continue;
+            }
             tempvector.push_back(temp);
         }
         board.push_back(tempvector);
         tempvector.clear();
     }
+    infile.close();
 }
 
 template <class T> void Puzzle<T>::empty()
@@ -74,7 +80,7 @@ template <class T> void Puzzle<T>::empty()
     for (i=0;i<size;i++)
     {
         if (typeid(T) == typeid(char))
-            temp.push_back('o');
+            temp.push_back('0');
         else
             temp.push_back(0);
     }
@@ -102,11 +108,11 @@ template <class T> void Puzzle<T>::addValue()
     int x, y, value;
     do
     {
-        cout << "Enter the row you would like place your value:" << endl;
+        cout << "Enter the row for your value (0-8):" << endl;
         cin >> x;
-        cout << "Enter the column you would like place your value:" << endl;
+        cout << "Enter the column for your value (0-8):" << endl;
         cin >> y;
-        cout << "Enter the value you want to place:" << endl;
+        cout << "Enter the value you want to place(0-9):" << endl;
         cin >> value;
     }while (validPlacement(x,y,value)!=1);
 
@@ -168,7 +174,7 @@ template <class T> int Puzzle<T>::checkBox(int boxX, int boxY, int value)
         {
             if (board[i+X][j+Y]==value)
             {
-                cout << "value exists in box" << endl << endl;
+                cout << "value already exists in box" << endl << endl;
                 return 0;
             }
         }
@@ -178,7 +184,18 @@ template <class T> int Puzzle<T>::checkBox(int boxX, int boxY, int value)
 
 template <class T> void Puzzle<T>::isComplete()
 {
-
+    int i,j;
+    for (i=0;i<size;i++)
+    {
+        for (j=0;j<size;j++)
+        {
+            if (board[i][j] == 0 || board[i][j] =='0')
+            {
+                cout << endl << "inComplete" << endl;
+                return;
+            }
+        }
+    }
 }
 
 template <class T> void Puzzle<T>::interactive()
@@ -188,6 +205,7 @@ template <class T> void Puzzle<T>::interactive()
     {
         print();
         cout << endl << "type 'a' to add value board, 'c' to check if your board is correct, or 'q' to quit" << endl;
+        cin >> c;
         if(c=='q')
             continue;
         else if (c=='c')

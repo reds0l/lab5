@@ -53,11 +53,17 @@ template <class T> Puzzle<T>::Puzzle(string filename)
         for(i=0 ; i<size ; i++)
         {
             infile >> temp;
+            if (typeid(T) == typeid(char) && temp==' ')
+            {
+                i--;
+                continue;
+            }
             tempvector.push_back(temp);
         }
         board.push_back(tempvector);
         tempvector.clear();
     }
+    infile.close();
 }
 
 template <class T> void Puzzle<T>::empty()

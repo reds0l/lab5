@@ -11,8 +11,6 @@ int main()
 
 Puzzle<int> sudoku1("sudoku.txt");
 
-sudoku1.print();
 cout << endl << endl;
-sudoku1.addValue();
-sudoku1.print();
+sudoku1.interactive();
 }
