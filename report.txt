@@ -1,0 +1,41 @@
+Jared Rodgers
+
+link to github repo:
+https://github.com/reds0l/lab5
+
+For part two the user input is simple. Running the make file then the
+main program displays 5 different sudoku boards. Two use the default
+constructor. Two use file input, one of characters and one of int. One
+takes an int input and creates an NxN board of that size. 
+
+For part three running main puts the user into interactive mode where
+there are three options. Check if board is complete, add value to
+board, and quit. Upon choosing to add a value the program will prompt
+the user for the row, column, and value. If invalid the program will
+explain the conflict and reprompt the user. (note the number 0 can 
+be added to a cell effectively 'erasing' a number from the board)
+
+Internally the program has two non default constructors as well as a
+number of other methods and two private variables. One is the board
+which is a vector of vectors and the other is size which is an int
+that holds the size of the board. Most of the member functions work
+toward making the interactive mode function properly. The two methods:
+validPlacement and checkBox, test to see if values have been placed 
+properly and isComplete checks if the board is complete. The addValue
+method calls the first two methods to error check. Interactive mode
+combines all the methods to create a functioning sudoku game. (note: 
+original puzzle values can be overwritten with a zero or other values
+if it doesn't conflict with other row, column, or box values.)
+
+The program was verified by testing with various values at different
+locations on the board.(note: inputing a letter when a number is expected
+causes program malfuctions.)
+
+I like the way the vector of vectors worked in implementing the 
+sudoku board. It ended up being cleaner and much easier to work with
+than the connect 4 lab. The fact that the vectors can also be referred
+to with the same syntax as regular c arrays made working with them 
+easier. Templated classes and variables also make it easier to make your
+code more general.
+
+
