@@ -9,8 +9,8 @@ using namespace std;
 int main()
 {
 
-Puzzle<int> sudoku1("sudoku.txt");
+Puzzle<int> sudoku1("sudoku.txt");  // creates given sudoku board
 
 cout << endl << endl;
-sudoku1.interactive();
+sudoku1.interactive();              // starts interactive mode
 }

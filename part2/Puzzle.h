@@ -14,58 +14,62 @@ class Puzzle {
 
     public:
 
-        Puzzle();
-        Puzzle(int);
-        Puzzle(string);
-        void empty();
-        void print();
+        Puzzle();           // default constuctor
+        Puzzle(int);        // non-default constuctor with int input
+        Puzzle(string);     // non-default constuctor with char input
+        void empty();       // empties the board
+        void print();       // prints the board
 
     private:
 
-        int size;
-        vector < vector<T> > board;
+        int size;                       // size of board
+        vector < vector<T> > board;     // 2d vector array
 
 };
 
+// creates board defaulted to size 9
 template <class T> Puzzle<T>::Puzzle()
 {
-    size=9;
-    empty();
+    size=9;     // defaults to size of 9
+    empty();    // makes board empty
 }
 
+//creates board with size input
 template <class T> Puzzle<T>::Puzzle(int n)
 {
-    size=n;
-    empty();
+    size=n;     // input n is size of board
+    empty();    // makes board empty
 }
 
+// creates board with file input
 template <class T> Puzzle<T>::Puzzle(string filename)
 {
     int i;
-    T temp;
-    vector <T> tempvector;
+    T temp;                 // makes a temp variable out of templated type
+    vector <T> tempvector;  // makes a temp vector out of templated type
     size=9;
 
-    ifstream infile;
-    infile.open(filename.c_str());
-    while(!infile.eof())
+    ifstream infile;                // sets file to read in to program
+    infile.open(filename.c_str());  // opens file
+    while(!infile.eof())            // keeps going while file is not at end
     {
         for(i=0 ; i<size ; i++)
         {
             infile >> temp;
-            if (typeid(T) == typeid(char) && temp==' ')
+            if (typeid(T) == typeid(char) && temp==' ') // makes sure space is not taken as input
             {
                 i--;
                 continue;
             }
-            tempvector.push_back(temp);
+            tempvector.push_back(temp); // pushs one entry from file into temp vector
         }
-        board.push_back(tempvector);
-        tempvector.clear();
+        board.push_back(tempvector);    // pushs temp vector into main board
+        tempvector.clear();             // clears temp vector
     }
-    infile.close();
+    infile.close();                 // closes file
 }
 
+// creates empty board all 0's 
 template <class T> void Puzzle<T>::empty()
 {
     vector <T> temp;
@@ -73,8 +77,8 @@ template <class T> void Puzzle<T>::empty()
 
     for (i=0;i<size;i++)
     {
-        if (typeid(T) == typeid(char))
-            temp.push_back('o');
+        if (typeid(T) == typeid(char)) // if T is char inputs char
+            temp.push_back('0');
         else
             temp.push_back(0);
     }
@@ -84,6 +88,7 @@ template <class T> void Puzzle<T>::empty()
     }
 }
 
+// prints board
 template <class T> void Puzzle<T>::print()
 {
     int i,j;

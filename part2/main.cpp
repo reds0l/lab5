@@ -9,12 +9,13 @@ using namespace std;
 int main()
 {
 
-Puzzle<int> sudoku1;
-Puzzle<int> sudoku2("sudoku.txt");
-Puzzle<char> sudoku3("wordoku.txt");
-Puzzle<int> sudoku4(4);
-Puzzle<char> sudoku5;
+Puzzle<int> sudoku1;                    // runs default constructor with int
+Puzzle<int> sudoku2("sudoku.txt");      // runs non-default with text file input
+Puzzle<char> sudoku3("wordoku.txt");    // runs non-default with text file input
+Puzzle<int> sudoku4(4);                 // runs non-default with integer input
+Puzzle<char> sudoku5;                   // runs default constructor with char
 
+//prints each out.
 sudoku1.print();
 cout << endl << endl;
 sudoku2.print();
